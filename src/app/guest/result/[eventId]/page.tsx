@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import Image from "next/image";
-import PageContainer from "@/components/ui/PageContainer";
+import PageContainer from "@/components/ui/PageContent";
 import InfoRow from "@/components/ui/InfoRow";
 import { Header } from "@/components/ui/Header";
 
