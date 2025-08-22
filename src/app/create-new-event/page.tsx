@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EventNameCard from "@/components/ui/EventNameCard";
+import EventDurationCard from "@/components/ui/EventDurationCard";
 
 import EventTimeCard, { EventTimeValue } from "@/components/ui/EventTimeCard";
 
@@ -11,6 +12,7 @@ export default function Home() {
     start: null,
     end: null,
   });
+
   const [time, setTime] = useState<EventTimeValue>({ option: "" });
 
   return (
@@ -19,7 +21,11 @@ export default function Home() {
       <EventNameCard title={title} onTitleChange={setTitle} />
 
       {/* 期間（開始/終了日） */}
-     
+     <EventDurationCard
+        periodStart={period.start}
+        periodEnd={period.end}
+        onChange={setPeriod}
+      />
 
       {/* 募集時間（朝/昼/夜/全日/カスタム） */}
       <EventTimeCard value={time} onChange={setTime}>
