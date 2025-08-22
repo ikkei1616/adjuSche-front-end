@@ -20,7 +20,7 @@ type DateResult = {
   possibleDate: PossibleDate[];
 };
 
-type Props = {params: {eventId: string}};
+type Props = {params: Promise<{eventId: string}>};
 
 const mockEvents: DateResult = {
   eventName: "サークル BBQ",
@@ -43,8 +43,8 @@ const mockEvents: DateResult = {
   ],
 };
 
-const page = ({params}:Props) => {
-  const { eventId } = params;
+const page = async ({params}:Props) => {
+  const { eventId } = await params;
 
   // 分を時間形式に変換する関数
   const formatDuration = (minutes: number): string => {
