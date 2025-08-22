@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-
+import Image from "next/image";
 /**
  * EventTimeCard.tsx
  *
@@ -66,11 +66,14 @@ export default function EventTimeCard({
     return (
         <Card className={className}>
             <CardHeader>
-                {children ?? (
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <span>例: 募集時間</span>
-                    </div>
-                )}
+                  <Image
+                          src="Frame.svg"
+                          alt="Time Icon"
+                          width={28}
+                          height={28}
+                          className="Icon"
+                        />
+                        <h2>時間</h2>
             </CardHeader>
 
             <CardContent className="space-y-4">
@@ -81,17 +84,17 @@ export default function EventTimeCard({
                 >
                     <Label htmlFor="opt-morning" className="flex items-center gap-3 cursor-pointer font-bold">
                         <RadioGroupItem id="opt-morning" value="morning" />
-                        <span>朝</span>
+                        <span>朝(7:00〜12:00)</span>
                     </Label>
 
                     <Label htmlFor="opt-noon" className="flex items-center gap-3 cursor-pointer font-bold">
                         <RadioGroupItem id="opt-noon" value="noon" />
-                        <span>昼</span>
+                        <span>昼(12:00〜18:00)</span>
                     </Label>
 
                     <Label htmlFor="opt-evening" className="flex items-center gap-3 cursor-pointer font-bold">
                         <RadioGroupItem id="opt-evening" value="evening" />
-                        <span>夜</span>
+                        <span>夜(18:00〜24:00)</span>
                     </Label>
 
                     <Label htmlFor="opt-allday" className="flex items-center gap-3 cursor-pointer font-bold">
@@ -108,7 +111,7 @@ export default function EventTimeCard({
                         {isCustom && (
                             <div className="flex items-end gap-2">
                                 <div className="grid gap-1">
-                                    <Label htmlFor="custom-start">{customLabels?.start ?? "開始"}</Label>
+                                    
                                     <Input
                                         id="custom-start"
                                         type="time"
@@ -123,7 +126,7 @@ export default function EventTimeCard({
                                 <span className="pb-2">〜</span>
 
                                 <div className="grid gap-1">
-                                    <Label htmlFor="custom-end">{customLabels?.end ?? "終了"}</Label>
+                                   
                                     <Input
                                         id="custom-end"
                                         type="time"

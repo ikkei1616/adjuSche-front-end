@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import EventNameCard from "@/components/ui/EventNameCard";
-import EventDurationCard from "@/components/ui/EventDurationCard";
+
 import EventTimeCard, { EventTimeValue } from "@/components/ui/EventTimeCard";
 
 export default function Home() {
@@ -19,19 +19,12 @@ export default function Home() {
       <EventNameCard title={title} onTitleChange={setTitle} />
 
       {/* 期間（開始/終了日） */}
-      <EventDurationCard
-        periodStart={period.start}
-        periodEnd={period.end}
-        onChange={setPeriod}
-      />
+     
 
       {/* 募集時間（朝/昼/夜/全日/カスタム） */}
       <EventTimeCard value={time} onChange={setTime}>
-        <h2 className="text-lg font-semibold">募集時間</h2>
+        <h2 className="font-bold">募集時間</h2>
       </EventTimeCard>
-
-      {/* デバッグ表示（不要なら削除OK） */}
-      <pre className="text-xs opacity-70">{JSON.stringify({ title, period, time }, null, 2)}</pre>
     </div>
   );
 }
