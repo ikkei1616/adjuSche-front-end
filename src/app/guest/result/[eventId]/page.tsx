@@ -19,6 +19,8 @@ type DateResult = {
   possibleDate: PossibleDate[];
 };
 
+type Props = {params: {eventId: string}};
+
 const mockEvents: DateResult = {
   eventName: "サークル BBQ",
   votedCount: 20,
@@ -40,7 +42,9 @@ const mockEvents: DateResult = {
   ],
 };
 
-const page = () => {
+const page = ({params}:Props) => {
+  const { eventId } = params;
+
   // 分を時間形式に変換する関数
   const formatDuration = (minutes: number): string => {
     const hours = Math.floor(minutes / 60);
