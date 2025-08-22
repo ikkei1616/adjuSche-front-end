@@ -1,4 +1,9 @@
-import React from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from "react";
+import Image from "next/image";
+import PageContainer from "@/components/ui/PageContainer";
+import InfoRow from "@/components/ui/InfoRow";
+
 type PossibleDate = {
   id: number;
   periodStart: string; // RFC3339準拠の日時文字列 (例: "2025-09-01T10:00:00Z")
@@ -80,8 +85,55 @@ const page = () => {
   };
 
   return (
-    <div>page</div>
-  )
-}
+    <PageContainer bgColor="gradation">
+      <Card>
+        <CardHeader>
+          <Image
+            src="/Icon-Carender.svg"
+            alt="カレンダーアイコン"
+            width={28}
+            height={28}
+          ></Image>
+          <CardTitle>{mockEvents.eventName}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col gap-3">
+            <InfoRow
+              label="所要時間"
+              value={formatDuration(mockEvents.durationMin)}
+            ></InfoRow>
+            <InfoRow
+              label="投票済み"
+              value={`${mockEvents.votedCount}人`}
+            ></InfoRow>
+            <InfoRow label="メモ" value={mockEvents.memo}></InfoRow>
+          </div>
+        </CardContent>
+      </Card>
 
-export default page
+      <div>
+        <h2 className="text-2xl font-semibold">日程調整</h2>
+        <div className="flex flex-col gap-2">
+          {mockEvents.possibleDate.map((date) => {
+            return (
+              <Card key={date.id}>
+                <CardHeader>
+                  <CardTitle>
+                    {formatDateTimeRange(date.periodStart, date.periodEnd)}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="font-semibold text-xs text-gray-text">
+                    {date.participateMemberNum}人参加可能
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    </PageContainer>
+  );
+};
+
+export default page;
