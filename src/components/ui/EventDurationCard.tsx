@@ -6,8 +6,8 @@ import Image from "next/image";
 
 export default function EventDurationCard() {
 
-     const [eventStartDate,  setEventStartDate] = useState("");
-     const [eventEndDate,  setEventEndDate] = useState("");
+     const [periodStart,  setPeriodStart] = useState("");
+     const [periodEnd,  setPeriodEnd] = useState("");
 
     return (
         <Card >
@@ -22,18 +22,18 @@ export default function EventDurationCard() {
                 <h2 >期間</h2>
             </CardHeader>
         <CardContent>
-            <label className="font-bold text-sm text-gray-700">開始日</label>
+            <label className="font-bold">開始日</label>
             <Input
                 type="date"
-                value={eventStartDate}
-                 onChange={(e) => setEventStartDate(e.target.value)}
+                value={periodStart}
+                 onChange={(e) => setPeriodStart(e.target.value)}
                
             />
-            <label className="font-bold text-sm text-gray-700">終了日</label>
+            <label className="font-bold">終了日</label>
             <Input
                 type="date"
-                value={eventEndDate}
-                 onChange={(e) => setEventEndDate(e.target.value)}
+                value={periodEnd}
+                 onChange={(e) => setPeriodEnd(e.target.value)}
                
             />
         </CardContent>

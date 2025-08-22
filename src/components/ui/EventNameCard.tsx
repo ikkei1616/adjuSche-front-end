@@ -5,7 +5,7 @@ import { Input } from "./input";
 import Image from "next/image";
 
 export default function EventNameCard() {
-     const [eventName, setEventName] = useState("");
+     const [title, setTitle] = useState("");
     return (
         <Card >
            <CardHeader >
@@ -19,11 +19,10 @@ export default function EventNameCard() {
                 <h2 >イベント名</h2>
             </CardHeader>
             <Input
-                type="text"
-                value={eventName}
-                 onChange={(e) => setEventName(e.target.value)}
+                type="string"
+                value={title}
+                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="イベントの名を入力:例: 歓迎会、飲み会"
-                
             />
         </Card>
 
