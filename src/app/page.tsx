@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import EventCard from "@/components/ui/EventCard";
+import EventCard from "@/components/ui/EventNameCard";
 
 export default function Home() {
   return (
