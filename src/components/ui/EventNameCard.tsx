@@ -23,7 +23,7 @@ export default function EventNameCard() {
                 value={eventName}
                  onChange={(e) => setEventName(e.target.value)}
                 placeholder="イベントの名を入力:例: 歓迎会、飲み会"
-                className="bg-bg-input text-gray-700 placeholder-gray-500 focus:ring-2 focus:ring-color-mainGreen focus:border-color-mainGreen rounded-lg  w-full"
+                
             />
         </Card>
 
