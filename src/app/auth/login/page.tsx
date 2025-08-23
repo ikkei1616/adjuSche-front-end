@@ -2,7 +2,7 @@
 
 import { supabase } from "@/lib/supabase";
 
-export function Page() {
+export default function Page() {
 
   const handleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
@@ -16,9 +16,8 @@ export function Page() {
 
   return (
     <div>
-      <button onClick={handleLogin}>Sign in with Google</button>;
+      <p>aaaa</p>
+      <button onClick={handleLogin}>Sign in with Google</button>
     </div>
   );
 }
-
-export default Page;
