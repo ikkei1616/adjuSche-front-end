@@ -2,7 +2,7 @@ import { ComponentPropsWithRef } from "react";
 import { cva } from "class-variance-authority";
 
 const pageContainer = cva(
-  "flex flex-col gap-4 h-screen p-6",
+  "flex flex-col gap-4 h-screen p-6 mt-16",
   {
     variants: {
       bgColor: {
@@ -14,7 +14,7 @@ type Props = ComponentPropsWithRef<"div"> & {
   bgColor?: "gradation";
 };
 
-const PageContainer = ({ className, children, bgColor, ...props }: Props) => {
+const PageContent = ({ className, children, bgColor, ...props }: Props) => {
   return (
     <div
       className={pageContainer({
@@ -28,4 +28,4 @@ const PageContainer = ({ className, children, bgColor, ...props }: Props) => {
   );
 };
 
-export default PageContainer;
+export default PageContent;
