@@ -18,8 +18,8 @@ const PageContent = ({ className, children, bgColor, ...props }: Props) => {
   return (
     <div
       className={pageContainer({
-        className,
         bgColor,
+        className,
       })}
       {...props}
     >

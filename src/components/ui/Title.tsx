@@ -19,8 +19,7 @@ export default function Title({
     <section
       className={cn(
         mplusRounded.className, // ← セクション全体にフォント適用
-        "relative mx-auto max-w-5xl",
-        "p-6 sm:p-8 md:p-10",
+        " max-w-5xl",
         className
       )}
     >
