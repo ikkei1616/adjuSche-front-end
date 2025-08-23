@@ -2,8 +2,11 @@
 import { useAuth } from "@/lib/auth-context";
 import { useEffect, useState } from "react";
 
+type Props = {params: Promise<{eventId:string}>};
 
-export default function Page() {
+export default function Page({params}:Props) {
+    const [eventId,setEventId] = useState<string>("");
+
     const [accessToken, setAccessToken] = useState<string>("");
     const [result,setResult] = useState();
 
@@ -12,6 +15,14 @@ export default function Page() {
       "end_date": "2025-08-28T00:00:00Z"
     };
     
+    useEffect(()=>{
+      const getEventId = async ()=>{
+        const { eventId } = await params;
+        setEventId(eventId);
+      };
+      getEventId();
+    },[params]);
+
     const {
       user,
       session,
@@ -72,7 +83,7 @@ export default function Page() {
       );
     }
   return (
-    <p>aaaa</p>
+    <p>{eventId}</p>
   )
 }
 
