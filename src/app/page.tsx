@@ -6,10 +6,6 @@ export default function Home() {
   return (
     <div className="text-red-500">
       <Button>Click me </Button>
-          <EventCard>
-
-          
-          </EventCard>
     </div>
 
   );
