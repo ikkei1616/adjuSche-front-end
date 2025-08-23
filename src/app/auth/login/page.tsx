@@ -2,13 +2,16 @@
 
 import { useAuth } from "@/lib/auth-context";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
   const { signIn } = useAuth();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect');
 
   const handleLogin = async () => {
     try {
-      await signIn();
+      await signIn(redirect || undefined);
     } catch (error) {
       console.error('Login failed:', error);
     }

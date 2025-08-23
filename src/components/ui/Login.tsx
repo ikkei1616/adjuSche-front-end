@@ -2,13 +2,16 @@
 import React from 'react'
 import { useAuth } from '@/lib/auth-context'
 import { Button } from './button'
+import { useSearchParams } from 'next/navigation'
 
 const Login = () => {
   const { signIn } = useAuth()
+  const searchParams = useSearchParams()
+  const redirect = searchParams.get('redirect')
 
   const handleGoogleLogin = async () => {
     try {
-      await signIn()
+      await signIn(redirect || undefined)
     } catch (error) {
       console.error('Login failed:', error)
     }

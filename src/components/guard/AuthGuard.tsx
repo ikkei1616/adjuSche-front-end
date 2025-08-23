@@ -20,9 +20,11 @@ export const AuthGuard = ({children}:Props) => {
   useEffect(() => {
     // 未認証かつ公開ページでない場合、ログインページにリダイレクト
     if (!loading && !user && !isPublicPage) {
-      router.push('/auth/login');
+      // 現在のパスをクエリパラメータとして保存
+      const currentPath = encodeURIComponent(pathname);
+      router.push(`/auth/login?redirect=${currentPath}`);
     }
-  }, [user, loading, isPublicPage, router]);
+  }, [user, loading, isPublicPage, router, pathname]);
   
   if (loading) {
     return (
