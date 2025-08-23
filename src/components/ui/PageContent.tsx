@@ -2,7 +2,7 @@ import { ComponentPropsWithRef } from "react";
 import { cva } from "class-variance-authority";
 
 const pageContainer = cva(
-  "flex flex-col gap-4 h-screen p-6",
+  "flex flex-col gap-4 min-h-screen p-6",
   {
     variants: {
       bgColor: {

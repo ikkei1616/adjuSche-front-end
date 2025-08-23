@@ -2,6 +2,7 @@ import { ComponentPropsWithRef } from "react";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
+
 type Props = ComponentPropsWithRef<"div"> & {
   link : string;
   title: string;
