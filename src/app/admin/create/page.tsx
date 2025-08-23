@@ -1,62 +1,39 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useAuth } from "@/lib/auth-context";
 
-export default function Page() {
-  const [accessToken, setAccessToken] = useState<string>("");
-  
-  const {
-    user,
-    session,
-    loading,
-    signIn,
-    signOut,
-  } = useAuth();
+import { memo, useState } from "react";
+import EventNameCard from "@/components/ui/EventNameCard";
+import EventDurationCard from "@/components/ui/EventDurationCard";
+import EventTimeCard, { EventTimeValue } from "@/components/ui/EventTimeCard";
+import EventNeedsTime from "@/components/ui/EventNeedsTime";
+import EventMemoCard from "@/components/ui/EventMemoCard";
+export default function Home() {
+    const [title, setTitle] = useState("");
+    const [period, setPeriod] = useState<{ start: Date | null; end: Date | null }>({
+        start: null,
+        end: null,
+    });
 
-  useEffect(() => {
-    if (session) {
-      // useAuth()から取得したsessionを直接使用
-      const googleAccessToken = session.provider_token ?? null;
-      if (googleAccessToken) {
-        setAccessToken(googleAccessToken);
-      }
-      console.log("Session from useAuth:", session);
-      console.log("User from useAuth:", user);
-    }
-  }, [session, user]);
-
-  if (loading) {
-    return <div>読み込み中...</div>;
-  }
-
-  if (!user) {
+    const [time, setTime] = useState<EventTimeValue>({ option: "" });
+    const [durationMin, setDurationMin] = useState(0);
+    const [memo, setMemo] = useState("");
+    
     return (
-      <div className="p-4">
-        <p>ログインが必要です</p>
-        <button 
-          onClick={() => signIn()}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Googleでログイン
-        </button>
-      </div>
+        <div className="flex flex-col gap-4 p-6">
+            {/* イベント名 */}
+            <EventNameCard title={title} onTitleChange={setTitle} />
+            {/* 期間（開始/終了日） */}
+            <EventDurationCard
+                periodStart={period.start}
+                periodEnd={period.end}
+                onChange={setPeriod}
+            />
+            {/* 募集時間（朝/昼/夜/全日/カスタム） */}
+            <EventTimeCard value={time} onChange={setTime}>
+            </EventTimeCard>
+            {/* 所要時間 */}
+            <EventNeedsTime durationMin={durationMin} onDurationChange={setDurationMin} />
+              {/* メモらん */}
+            <EventMemoCard Memo={memo} onMemoChange={setMemo} />
+        </div>
     );
-  }
-
-  return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">管理者ページ</h1>
-      <div className="space-y-2">
-        <p><strong>ユーザー:</strong> {user.email}</p>
-        <p><strong>ユーザーID:</strong> {user.id}</p>
-        <p><strong>アクセストークン:</strong> {accessToken ? accessToken : "取得できませんでした"}</p>
-        <button 
-          onClick={signOut}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          ログアウト
-        </button>
-      </div>
-    </div>
-  );
 }
