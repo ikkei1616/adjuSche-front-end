@@ -14,7 +14,11 @@ export function LoginButton() {
     if (error) console.error(error);
   };
 
-  return <button onClick={handleLogin}>Sign in with Google</button>;
+  return (
+    <div>
+      <button onClick={handleLogin}>Sign in with Google</button>;
+    </div>
+  );
 }
 
 export default LoginButton;
