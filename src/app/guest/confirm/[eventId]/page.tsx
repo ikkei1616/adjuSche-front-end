@@ -43,7 +43,7 @@ export default function Page() {
           method: "POST",
           headers: { 
             'Content-Type': 'application/json',
-            'Accept': 'ap1plication/json',  
+            'Accept': 'application/json',  
             "X-Token":accessToken,
           },
           body: JSON.stringify(testDate)
@@ -51,8 +51,10 @@ export default function Page() {
         const data = await res.json();
         setResult(data);
         };
-        testFetch();
-    },[])
+        if (accessToken){
+          testFetch();
+        }
+    },[accessToken])
   
     if (!user) {
       return (
@@ -65,11 +67,12 @@ export default function Page() {
             Googleでログイン
           </button>
           <p>{result}</p>
+          <p>aaaa{accessToken}</p>
         </div>
       );
     }
   return (
-    <div>page</div>
+    <p>aaaa</p>
   )
 }
 
