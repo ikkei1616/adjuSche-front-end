@@ -3,13 +3,14 @@
 import * as React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export type GreenButtonFrameProps = React.ComponentProps<typeof Button> & {
   imageSrc?: string;
   imageAlt?: string;
   title?: string | React.ReactNode;
   className?: string;
+  href?: string;
 };
 
 export default function GreenButton({
@@ -18,13 +19,15 @@ export default function GreenButton({
   title,
   className,
   type = "button",
+  href,
   ...props
 }: GreenButtonFrameProps) {
-  return (
+  const buttonContent = (
     <Button
       type={type}
       aria-label={typeof title === "string" ? title : undefined}
       variant="green"
+      className={className}
       {...props}
     >
       <span className="inline-flex flex-row items-center justify-center gap-2 text-center">
@@ -45,4 +48,16 @@ export default function GreenButton({
       </span>
     </Button>
   );
+
+  // hrefが指定されている場合はLinkでラップ
+  if (href) {
+    return (
+      <Link href={href}>
+        {buttonContent}
+      </Link>
+    );
+  }
+
+  // hrefが指定されていない場合は通常のボタン
+  return buttonContent;
 }
