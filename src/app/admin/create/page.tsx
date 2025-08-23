@@ -1,9 +1,26 @@
-import React from 'react'
+"use client";
+import {useEffect,useState} from "react";
+import { supabase } from "@/lib/supabase";
 
-const page = () => {
+export default  function Page() {
+  const [accessToken,setAccessToken] = useState<string>("");
+
+  useEffect(() =>{
+    
+    (async()=>{
+      const {data,error} = await supabase.auth.getSession();
+      if (error) throw error;
+      const googleAccessToken = data.session?.provider_token ?? null;
+      if (googleAccessToken) {
+        setAccessToken(googleAccessToken);
+      }
+    })();
+
+  },[]);
+
   return (
-    <div>page</div>
-  )
+    <div>
+      {accessToken}
+    </div>
+  );
 }
-
-export default page
