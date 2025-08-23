@@ -1,3 +1,4 @@
+
 "use client";
 
 import GreenCardFrame from "@/components/ui/GreenFrameCard";
@@ -12,6 +13,7 @@ export default function Home() {
         title="合宿のお知らせ"
       >
       </GreenCardFrame>
+
 
       {/* 画像なしパターン */}
       <GreenCardFrame
