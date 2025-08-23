@@ -7,13 +7,10 @@ import { Checkbox } from "./checkbox"; // shadcn/ui の Checkbox
 import Image from "next/image";
 
 type EventNeedsTimeProps = {
-  /** 分（整数） */
   durationMin: number;
-  /** 分（整数）で受け取る */
   onDurationChange: (value: number) => void;
 };
 
-// 分 → HH:MM
 function minutesToTimeString(min: number): string {
   const safe = Number.isFinite(min) && min >= 0 ? Math.floor(min) : 0;
   const hh = Math.floor(safe / 60);
@@ -22,7 +19,7 @@ function minutesToTimeString(min: number): string {
   return `${pad(hh)}:${pad(mm)}`;
 }
 
-// HH:MM → 分
+
 function timeStringToMinutes(v: string): number {
   if (!v) return 0;
   const [h, m] = v.split(":").map((x) => parseInt(x, 10));
@@ -31,11 +28,8 @@ function timeStringToMinutes(v: string): number {
 }
 
 export default function EventNeedsTime({ durationMin, onDurationChange }: EventNeedsTimeProps) {
-  // 「全日」は 1440 分
   const ALL_DAY_MIN = 1440;
   const isAllDay = durationMin === ALL_DAY_MIN;
-
-  // 全日を外したときに復元する用の直前値
   const lastNonAllDayRef = React.useRef<number>(durationMin === ALL_DAY_MIN ? 0 : durationMin);
 
   // 外から durationMin が変わった場合の同期
@@ -52,14 +46,14 @@ export default function EventNeedsTime({ durationMin, onDurationChange }: EventN
         <h2>所要時間</h2>
       </CardHeader>
 
-      <CardContent className="flex flex-col gap-3">
-        {/* 時間入力（HH:MM） */}
+      <CardContent >
+
         <div className="flex items-center gap-2">
           <Input
             className="w-24"
             type="time"
-            step={60}                        // 1分刻み
-            disabled={isAllDay}              // 全日のときは無効化
+            step={60}                   
+            disabled={isAllDay}              
             value={minutesToTimeString(durationMin === ALL_DAY_MIN ? 0 : durationMin)}
             onChange={(e) => onDurationChange(timeStringToMinutes(e.target.value))}
             aria-label="所要時間（時:分）"

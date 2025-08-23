@@ -40,14 +40,14 @@ export default function EventDurationCard({ periodStart, periodEnd, onChange }: 
       </CardHeader>
 
       <CardContent >
-        <label className="font-bold">開始日</label>
+        開始日
         <Input
           type="date"
           value={formatDate(periodStart)}
           onChange={(e) => onChange({ start: parseDate(e.target.value), end: periodEnd })}
         />
 
-        <label className="font-bold">終了日</label>
+        終了日
         <Input
           type="date"
           value={formatDate(periodEnd)}

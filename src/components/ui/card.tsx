@@ -65,7 +65,7 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn(" gap-3 flex flex-col ", className)}
+      className={cn(" gap-3 flex flex-col font-bold ", className)}
       {...props}
     />
   )
