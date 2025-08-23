@@ -60,7 +60,7 @@ export default function EventTimeCard({
     <Card className={className}>
       <CardHeader>
         <Image
-          src="Frame.svg"
+          src="/Frame.svg"
           alt="Time Icon"
           width={28}
           height={28}

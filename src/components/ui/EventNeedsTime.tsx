@@ -42,7 +42,7 @@ export default function EventNeedsTime({ durationMin, onDurationChange }: EventN
   return (
     <Card>
       <CardHeader>
-        <Image src="icon-required-time.svg" alt="requiredIcon" width={28} height={28} className="requiredIcon" />
+        <Image src="/icon-required-time.svg" alt="requiredIcon" width={28} height={28} className="requiredIcon" />
         <h2>所要時間</h2>
       </CardHeader>
 

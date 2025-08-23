@@ -13,7 +13,7 @@ export default function EventMemoCard({ Memo, onMemoChange }: EventMemoCardProps
     <Card>
       <CardHeader>
         <Image
-          src="Memo.svg"
+          src="/Memo.svg"
           alt="MemoIcon"
           width={28}
           height={28}

@@ -30,7 +30,7 @@ export default function EventDurationCard({ periodStart, periodEnd, onChange }: 
     <Card>
       <CardHeader>
         <Image
-          src="icon-duration.svg"
+          src="/icon-duration.svg"
           alt="EventDurationIcon"
           width={28}
           height={28}
