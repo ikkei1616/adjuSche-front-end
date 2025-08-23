@@ -25,7 +25,7 @@ export default function EventNameCard({ title, onTitleChange }: EventNameCardPro
         type="text"
         value={title}
         onChange={(e) => onTitleChange(e.target.value)}
-        placeholder="イベントの名を入力: 例: 歓迎会、飲み会"
+        placeholder="例: 歓迎会、飲み会"
       />
     </Card>
   );
