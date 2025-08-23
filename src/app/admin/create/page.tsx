@@ -1,26 +1,39 @@
 "use client";
-import {useEffect,useState} from "react";
-import { supabase } from "@/lib/supabase";
 
-export default  function Page() {
-  const [accessToken,setAccessToken] = useState<string>("");
+import { memo, useState } from "react";
+import EventNameCard from "@/components/ui/EventNameCard";
+import EventDurationCard from "@/components/ui/EventDurationCard";
+import EventTimeCard, { EventTimeValue } from "@/components/ui/EventTimeCard";
+import EventNeedsTime from "@/components/ui/EventNeedsTime";
+import EventMemoCard from "@/components/ui/EventMemoCard";
+export default function Home() {
+    const [title, setTitle] = useState("");
+    const [period, setPeriod] = useState<{ start: Date | null; end: Date | null }>({
+        start: null,
+        end: null,
+    });
 
-  useEffect(() =>{
+    const [time, setTime] = useState<EventTimeValue>({ option: "" });
+    const [durationMin, setDurationMin] = useState(0);
+    const [memo, setMemo] = useState("");
     
-    (async()=>{
-      const {data,error} = await supabase.auth.getSession();
-      if (error) throw error;
-      const googleAccessToken = data.session?.provider_token ?? null;
-      if (googleAccessToken) {
-        setAccessToken(googleAccessToken);
-      }
-    })();
-
-  },[]);
-
-  return (
-    <div>
-      {accessToken}
-    </div>
-  );
+    return (
+        <div className="flex flex-col gap-4 p-6">
+            {/* イベント名 */}
+            <EventNameCard title={title} onTitleChange={setTitle} />
+            {/* 期間（開始/終了日） */}
+            <EventDurationCard
+                periodStart={period.start}
+                periodEnd={period.end}
+                onChange={setPeriod}
+            />
+            {/* 募集時間（朝/昼/夜/全日/カスタム） */}
+            <EventTimeCard value={time} onChange={setTime}>
+            </EventTimeCard>
+            {/* 所要時間 */}
+            <EventNeedsTime durationMin={durationMin} onDurationChange={setDurationMin} />
+              {/* メモらん */}
+            <EventMemoCard Memo={memo} onMemoChange={setMemo} />
+        </div>
+    );
 }

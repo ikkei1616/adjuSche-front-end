@@ -1,7 +1,4 @@
 "use client";
-import ConfirmButton from "@/components/ui/ConfirmButton";
-import ConfirmTitle from "@/components/ui/ConfirmTitle";
-import PageContent from "@/components/ui/PageContent";
 import { useAuth } from "@/lib/auth-context";
 import { useEffect, useState } from "react";
 
@@ -50,14 +47,43 @@ export default function Page({params}:Props) {
       return <div>読み込み中...</div>;
     }
 
+    useEffect(() => {
+      const testFetch = async()=>{
+        const res = await fetch("http://172.16.1.95:8080/calendar",{
+        // const res = await fetch("https://adjusche-back-end.onrender.com/calendar",{
+          method: "POST",
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',  
+            "X-Token":accessToken,
+          },
+          body: JSON.stringify(testDate)
+        })
+        const data = await res.json();
+        setResult(data);
+        };
+        if (accessToken){
+          testFetch();
+        }
+    },[accessToken])
+  
+    if (!user) {
+      return (
+        <div className="p-4">
+          <p>ログインが必要です</p>
+          <button 
+            onClick={() => signIn()}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Googleでログイン
+          </button>
+          <p>{result}</p>
+          <p>aaaa{accessToken}</p>
+        </div>
+      );
+    }
   return (
-    <PageContent className="gap-y-96 pt-9" bgColor="gradation" >
-      <ConfirmTitle eventName="test" />
-      <div className="w-full flex gap-4 justify-between">
-        <ConfirmButton href={`/guest/result/${eventId}`} text="参加" color="green"/>
-        <ConfirmButton href={`/guest/result/${eventId}`} text="不参加" color="white" />
-      </div>
-    </PageContent>
+    <p>{eventId}</p>
   )
 }
 

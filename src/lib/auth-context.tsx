@@ -49,7 +49,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
-        }
+        },
+        scopes:"https://www.googleapis.com/auth/calendar.readonly",
       },
     })
     if (error) {

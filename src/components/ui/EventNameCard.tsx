@@ -13,7 +13,7 @@ export default function EventNameCard({ title, onTitleChange }: EventNameCardPro
     <Card>
       <CardHeader>
         <Image
-          src="Icon-Carender.svg"
+          src="/Icon-Carender.svg"
           alt="Event Icon"
           width={28}
           height={28}
