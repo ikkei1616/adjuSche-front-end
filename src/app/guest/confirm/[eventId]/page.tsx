@@ -38,11 +38,13 @@ export default function Page() {
 
     useEffect(() => {
       const testFetch = async()=>{
-        const res = await fetch("https://adjusche-back-end.onrender.com/calendar",{
+        const res = await fetch("http://172.16.1.95:8080/calendar",{
+        // const res = await fetch("https://adjusche-back-end.onrender.com/calendar",{
           method: "POST",
           headers: { 
             'Content-Type': 'application/json',
-            "X-Token":accessToken 
+            'Accept': 'ap1plication/json',  
+            "X-Token":accessToken,
           },
           body: JSON.stringify(testDate)
         })
