@@ -7,6 +7,10 @@ type Props = ComponentPropsWithRef<"div"> & {
 }
 
 const InviteLinkCard = ({eventId,...props}:Props) => {
+  // 環境変数からベースURLを取得
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  const inviteUrl = `${baseUrl}/guest/confirm/${eventId}`;
+  
   return (
     <Card>
       <CardHeader>
@@ -14,8 +18,8 @@ const InviteLinkCard = ({eventId,...props}:Props) => {
         <CardTitle>招待用URL</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="text-gray-text bg-bg-input text-sm w-full p-3 rounded border break-all whitespace-pre-wrap rounded-2xl">
-          https://adju-sche-front-end.vercel.app/confirm/{eventId}
+        <div className="text-gray-text bg-bg-input text-sm w-full p-3 rounded-2xl border break-all whitespace-pre-wrap">
+          {inviteUrl}
         </div>
       </CardContent>
     </Card>
