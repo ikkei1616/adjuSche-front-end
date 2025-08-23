@@ -12,7 +12,7 @@ export type GreenButtonFrameProps = React.ComponentProps<typeof Button> & {
   className?: string;
 };
 
-export default function GreenButtonFrame({
+export default function GreenButton({
   imageSrc,
   imageAlt = "",
   title,

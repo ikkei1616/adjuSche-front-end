@@ -1,6 +1,6 @@
 "use client";
 
-import GreenCardFrame from "@/components/ui/GreenFrameCard";
+import GreenCardFrame from "@/components/ui/GreenButton";
 
 export default function Home() {
   return (
