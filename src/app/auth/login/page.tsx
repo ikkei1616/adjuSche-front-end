@@ -2,7 +2,7 @@
 
 import { supabase } from "@/lib/supabase";
 
-export function LoginButton() {
+export function Page() {
 
   const handleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
@@ -21,4 +21,4 @@ export function LoginButton() {
   );
 }
 
-export default LoginButton;
+export default Page;
