@@ -18,7 +18,8 @@ export default function Home() {
         start: null,
         end: null,
     });
-    const [time, setTime] = useState<EventTimeValue>({ option: "" });
+    // const [time, setTime] = useState<EventTimeValue>({ option: "" });
+    const [timeRange, setTimeRange] = useState<string>(""); 
     const [durationMin, setDurationMin] = useState(0);
     const [memo, setMemo] = useState("");
     const [accessToken, setAccessToken] = useState<string>("");
@@ -48,35 +49,36 @@ export default function Home() {
     console.log("終了",period.end)
 
 
+    console.log("タイムれんじ",timeRange)
+  //   const requestBody = {
+  //     hostUserID: user?.id,
+  //     title,
+  //     memo,
+  //     participantCount: 0,
+  //     conditions: {
+  //       periodStart: period.start?.toISOString(),
+  //       periodEnd: period.end?.toISOString(),
+  //       timeStart: string; // RFC3339形式の文字列
+  //       timeEnd: string; // RFC3339形式の文字列
+  //       durationMin,
+  //     }
+  // }
 
-    const requestBody = {
-      hostUserID: user?.id,
-      title,
-      memo,
-      participantCount: 0,
-      conditions: {
-        periodStart: period.start?.toISOString(),
-        periodEnd: period.end?.toISOString(),
-        timeStart: string; // RFC3339形式の文字列
-        timeEnd: string; // RFC3339形式の文字列
-        durationMin,
-      }
-  }
 
     
 
-    const handleClick = async ()=>{
-      const res = await fetch(`${baseUrl}/event`,{
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',  
-          "X-Token":accessToken,
-        },
-          body: JSON.stringify(requestBody)
-      });
-      const data = await res.json();
-    };
+  //   const handleClick = async ()=>{
+  //     const res = await fetch(`${baseUrl}/event`,{
+  //       method: "POST",
+  //       headers: { 
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json',  
+  //         "X-Token":accessToken,
+  //       },
+  //         body: JSON.stringify(requestBody)
+  //     });
+  //     const data = await res.json();
+  //   };
     
     return (
         <>
@@ -91,7 +93,7 @@ export default function Home() {
                   onChange={setPeriod}
               />
               {/* 募集時間（朝/昼/夜/全日/カスタム） */}
-              <EventTimeCard value={time} onChange={setTime}>
+              <EventTimeCard value={timeRange} onChange={setTimeRange}>
               </EventTimeCard>
               {/* 所要時間 */}
               <EventNeedsTime durationMin={durationMin} onDurationChange={setDurationMin} />
