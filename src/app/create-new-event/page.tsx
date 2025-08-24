@@ -27,7 +27,7 @@ export default function Home() {
                 onChange={setPeriod}
             />
             {/* 募集時間（朝/昼/夜/全日/カスタム） */}
-            <EventTimeCard value={time} onChange={setTime}>
+            <EventTimeCard value={time} onChangeAction={setTime}>
             </EventTimeCard>
             {/* 所要時間 */}
             <EventNeedsTime durationMin={durationMin} onDurationChange={setDurationMin} />

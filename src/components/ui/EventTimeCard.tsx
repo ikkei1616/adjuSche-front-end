@@ -363,7 +363,7 @@ export type EventTimeOption = "morning" | "noon" | "evening" | "allday" | "custo
 export interface EventTimeCardProps {
   /** 常に "HH:MM-HH:MM"。未選択は "" */
   value: string;
-  onChange: (next: string) => void;
+  onChangeAction: (next: string) => void;
   children?: React.ReactNode;
   customLabels?: { start?: string; end?: string };
   className?: string;
@@ -400,13 +400,15 @@ function detectOption(range: string): EventTimeOption {
 
 export default function EventTimeCard({
   value,
-  onChange,
+  onChangeAction,
   children,
   customLabels,
   className,
 }: EventTimeCardProps) {
   const currentOption = detectOption(value);
-  const isCustom = currentOption === "custom";
+  const [isCustom, setIsCustom] = React.useState(false)
+  console.log("value",value)
+  console.log("isCustom", isCustom)
 
   const [customStart, setCustomStart] = React.useState("");
   const [customEnd, setCustomEnd] = React.useState("");
@@ -424,30 +426,42 @@ export default function EventTimeCard({
   }, [isCustom, value]);
 
   const setOption = (option: EventTimeOption) => {
+    console.log("aaaa");
+    console.log(option);
     if (option === "") {
-      onChange("");
+      onChangeAction("");
       return;
     }
     if (option === "custom") {
+      setIsCustom(true)
+      console.log("bbbbbb");
       // custom 切替時は、両方入っていれば確定、なければ未確定のまま
       if (isHHMM(customStart) && isHHMM(customEnd)) {
-        onChange(`${customStart}-${customEnd}`);
+        console.log("ccccc");
+        onChangeAction(`${customStart}-${customEnd}`);
       } else {
-        onChange("");
+        onChangeAction("");
       }
       return;
+    } else {
+      setIsCustom(false)
     }
-    onChange(RANGES[option]);
+    onChangeAction(RANGES[option]);
   };
 
   const onChangeCustomStart = (hhmm: string) => {
+    console.log("aaaaa")
     setCustomStart(hhmm);
-    if (isHHMM(hhmm) && isHHMM(customEnd)) onChange(`${hhmm}-${customEnd}`);
+    if (isHHMM(hhmm) && isHHMM(customEnd)) {onChangeAction(`${hhmm}-${customEnd}`)
+      
+    console.log("bbbbbb");
+    };
   };
 
   const onChangeCustomEnd = (hhmm: string) => {
+
     setCustomEnd(hhmm);
-    if (isHHMM(customStart) && isHHMM(hhmm)) onChange(`${customStart}-${hhmm}`);
+    if (isHHMM(customStart) && isHHMM(hhmm)) onChangeAction(`${customStart}-${hhmm}`);
   };
 
   return (
@@ -488,6 +502,8 @@ export default function EventTimeCard({
               <RadioGroupItem id="opt-custom" value="custom" />
               <span>カスタム時間</span>
             </Label>
+
+
 
             {isCustom && (
               <div className="flex items-end gap-2">
