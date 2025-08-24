@@ -2,7 +2,7 @@
 import { memo, useEffect, useState } from "react";
 import EventNameCard from "@/components/ui/EventNameCard";
 import EventDurationCard from "@/components/ui/EventDurationCard";
-import EventTimeCard, { EventTimeValue } from "@/components/ui/EventTimeCard";
+import EventTimeCard from "@/components/ui/EventTimeCard";
 import EventNeedsTime from "@/components/ui/EventNeedsTime";
 import EventMemoCard from "@/components/ui/EventMemoCard";
 import PageContent from "@/components/ui/PageContent";
