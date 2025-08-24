@@ -23,15 +23,15 @@ type DateResult = {
 type Props = {params: Promise<{eventId: string}>};
 
 const mockEvents: DateResult = {
-  eventName: "サークル BBQ",
+  eventName: "BBQ",
   votedCount: 20,
-  memo: "参加費は1人500円です。",
+  memo: "参加費は1人1000円です。",
   durationMin: 120,
   possibleDate: [
     {
       id: 1,
-      periodStart: "2025-09-01T10:00:00Z",
-      periodEnd: "2025-09-01T12:00:00Z",
+      periodStart: "2025-09-01T12:00:00Z",
+      periodEnd: "2025-09-01T13:00:00Z",
       participateMemberNum: 10,
     },
     {

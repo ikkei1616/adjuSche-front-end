@@ -52,7 +52,7 @@ export default function Page({params}:Props) {
 
   return (
     <PageContent className="gap-y-96 pt-9" bgColor="gradation" >
-      <ConfirmTitle eventName="test" />
+      <ConfirmTitle eventName="BBQ" />
       <div className="w-full flex gap-4 justify-between">
         <ConfirmButton href={`/guest/result/${eventId}`} text="参加" color="green"/>
         <ConfirmButton href={`/guest/result/${eventId}`} text="不参加" color="white" />
